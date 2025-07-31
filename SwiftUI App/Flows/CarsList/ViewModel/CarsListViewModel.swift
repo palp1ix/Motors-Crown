@@ -10,7 +10,7 @@ import Combine
 
 class CarsListViewModel: ObservableObject {
     @Published var cars: [Car] = []
-    @Published var searchText: String = ""
+    @Published var filters: Filters = Filters()
     
     private let carService: CarService
     private var cancellables = Set<AnyCancellable>()
@@ -18,15 +18,12 @@ class CarsListViewModel: ObservableObject {
     init(carService: CarService) {
         self.carService = carService
         
-        $searchText
+        filters.$promptText
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
             .sink { [weak self] updatedSearchText in
                 self?.filterCars(prompt: updatedSearchText)
             }
             .store(in: &cancellables)
-            
-        
-        filterCars(prompt: "")
     }
 
     func filterCars(prompt: String) {
