@@ -25,7 +25,11 @@ struct CarsList: View {
                 Theme.background.ignoresSafeArea()
 
                 ScrollView {
-                    Header(searchableText: $viewModel.searchText).frame(maxWidth: .infinity, alignment: .leading)
+                    Header(searchableText: $viewModel.filters.promptText)
+                    .frame(
+                        maxWidth: .infinity,
+                        alignment: .leading
+                    )
                     
                     LazyVGrid(columns: columns, spacing: 5) {
                         ForEach(viewModel.cars) { car in
@@ -42,6 +46,7 @@ struct CarsList: View {
             }
         }
         .preferredColorScheme(.light)
+        .environmentObject(viewModel) 
     }
 }
 

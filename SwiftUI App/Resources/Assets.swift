@@ -11,6 +11,12 @@ enum ImageAsset: String {
     case speedometr, speed, odometr
 }
 
+enum CompanyLogos: String, CaseIterable, Identifiable {
+    case mercedes_logo, bmw_logo, audi_logo, porshe_logo, tesla_logo, lexus_logo
+    
+    var id: String { self.rawValue }
+}
+
 enum CFont {
     static func bold(_ size: CGFloat) -> Font {
         return Font.custom("ALSPofo-Bold", size: size)
