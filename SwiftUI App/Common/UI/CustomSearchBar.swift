@@ -23,7 +23,7 @@ struct CustomSearchBar: View {
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
                 .background(Theme.surface)
-                .cornerRadius(24)
+                .cornerRadius(20)
                 .font(CFont.bold(16))
                 .foregroundColor(Theme.primaryText)
                 .disableAutocorrection(true)
@@ -35,9 +35,14 @@ struct CustomSearchBar: View {
                     .foregroundColor(Theme.icon)
                     .frame(width: 50, height: 50)
                     .background(Theme.primaryAccent)
-                    .clipShape(Circle())
+                    .clipShape(RoundedRectangle(cornerRadius: 19))
             }
         }
         .padding(.horizontal)
     }
+}
+
+#Preview {
+    @State var text = ""
+    CustomSearchBar(text: $text)
 }
