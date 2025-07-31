@@ -8,6 +8,7 @@ import SwiftUI
 
 struct CustomSearchBar: View {
     @Binding var text: String
+    var backgroundColor: Color = Theme.surface
     var onSearch: () -> Void = {}
 
     var body: some View {
@@ -22,7 +23,7 @@ struct CustomSearchBar: View {
             .frame(height: 30)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
-                .background(Theme.surface)
+                .background(backgroundColor)
                 .cornerRadius(20)
                 .font(CFont.bold(16))
                 .foregroundColor(Theme.primaryText)
@@ -38,7 +39,6 @@ struct CustomSearchBar: View {
                     .clipShape(RoundedRectangle(cornerRadius: 19))
             }
         }
-        .padding(.horizontal)
     }
 }
 

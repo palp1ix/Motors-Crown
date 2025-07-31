@@ -8,11 +8,11 @@
 import Foundation
 
 protocol CarService {
-    func fetchCars(prompt: String) -> [Car]
+    func fetchCars(filters: Filters) -> [Car]
 }
 
 class MockCarService: CarService {
-    func fetchCars(prompt: String) -> [Car] {
+    func fetchCars(filters: Filters) -> [Car] {
         let allCars: [Car] = [
             .init(id: "0", imageName: "mercedes", title: "Mercedes-Benz 2021 Grand Coupe", price: 54891),
             .init(id: "1", imageName: "bmw", title: "BMW M5 Competition 2022", price: 63450),
@@ -22,12 +22,14 @@ class MockCarService: CarService {
             .init(id: "5", imageName: "lexus", title: "Lexus LC 500h Coupe 2022", price: 77800),
         ]
         
-        if prompt.isEmpty {
-            return allCars
-        }
+        // We need this variable
+        // because with empty prompt filtered cars would be empty
+        let isPromptEmpty = filters.promptText.isEmpty
         
         return allCars.filter({
-            return $0.title.lowercased().contains(prompt.lowercased())
+            // If we have empty prompt we should exclude prompting from filtering
+            isPromptEmpty ? $0.price.isLess(than: filters.maxPrice) && $0.price > filters.minPrice
+            : $0.title.lowercased().contains(filters.promptText.lowercased()) && $0.price.isLess(than: filters.maxPrice) && $0.price > filters.minPrice
         })
     }
 }

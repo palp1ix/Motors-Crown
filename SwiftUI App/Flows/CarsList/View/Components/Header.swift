@@ -27,12 +27,14 @@ struct Header: View {
             }
             Spacer()
             ZStack {
-                Circle().fill(Theme.primaryAccent).frame(width: 40, height: 40)
+                Circle().fill(Theme.primaryAccent).frame(width: 45, height: 45)
                 Image(systemName: "person.fill").foregroundStyle(Theme.icon)
             }.padding(.trailing, 10)
         }.padding(.horizontal)
         HStack(alignment: .center) {
             CustomSearchBar(text: $searchableText)
+                .padding(.leading, 20)
+            Color.clear.frame(width: 5, height: 1)
             Button(action: {
                 withAnimation {
                     isFiltering = true
@@ -56,7 +58,7 @@ struct Header: View {
         }
         .padding(.trailing, 20)
         Text("Motors & Crown — это не просто автомобили, это выбор тех, кто ценит престиж, мощь и безупречный стиль. Мы отбираем лучшие экземпляры люксовых марок, чтобы каждая покупка становилась заявлением. Без компромиссов. Только вершина.")
-            .font(CFont.bold(15)) // << Замена
+            .font(CFont.bold(15))
             .italic()
             .foregroundStyle(Theme.secondaryText)
             .padding()

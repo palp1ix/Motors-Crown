@@ -10,18 +10,21 @@ import Combine
 
 class Filters: ObservableObject {
     @Published var selectedCompanies: [CompanyLogos] = []
-    @Published var priceRange: ClosedRange<Double>?
+    @Published var minPrice: Double
+    @Published var maxPrice: Double
     @Published var promptText: String
     
     init() {
-        self.priceRange = nil
+        self.minPrice = 0
+        self.maxPrice = .infinity
         self.promptText = ""
-        self.selectedCompanies = [.audi_logo]
+        self.selectedCompanies = []
     }
     
-    init(selectedCompanies: [CompanyLogos], priceRange: ClosedRange<Double>, promptText: String) {
-        self.selectedCompanies = selectedCompanies
-        self.priceRange = priceRange
+    init (selectedCompanies: [CompanyLogos], minPrice: Double, maxPrice: Double, promptText: String) {
+        self.minPrice = minPrice
+        self.maxPrice = maxPrice
         self.promptText = promptText
+        self.selectedCompanies = []
     }
 }

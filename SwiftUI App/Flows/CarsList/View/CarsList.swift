@@ -25,6 +25,8 @@ struct CarsList: View {
                 Theme.background.ignoresSafeArea()
 
                 ScrollView {
+                    // Header of the screen. Responsible for searching, filtering
+                    // And text-description of company (Motors & Crown)
                     Header(searchableText: $viewModel.filters.promptText)
                     .frame(
                         maxWidth: .infinity,

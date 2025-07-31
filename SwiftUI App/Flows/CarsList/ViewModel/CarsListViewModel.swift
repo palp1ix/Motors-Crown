@@ -18,15 +18,17 @@ class CarsListViewModel: ObservableObject {
     init(carService: CarService) {
         self.carService = carService
         
-        filters.$promptText
+        $filters
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
-            .sink { [weak self] updatedSearchText in
-                self?.filterCars(prompt: updatedSearchText)
+            .sink { [weak self] updatedFilters in
+                self?.filterCars(filters: updatedFilters)
             }
             .store(in: &cancellables)
+        
+        filterCars(filters: filters)
     }
 
-    func filterCars(prompt: String) {
-        self.cars = carService.fetchCars(prompt: prompt)
+    func filterCars(filters: Filters) {
+        self.cars = carService.fetchCars(filters: filters)
     }
 }
