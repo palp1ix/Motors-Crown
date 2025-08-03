@@ -9,16 +9,15 @@ import SwiftUI
 import CoreData
 
 @main
-struct SwiftUI_AppApp: App {
+struct CrownMotorsApp: App {
     let persistenceContainer: NSPersistentContainer
     let datasource:  CoreDataSource<CarModel>
     let carService: CarService
     
     init() {
         persistenceContainer = NSPersistentContainer(name: "CrownMotors")
-        persistenceContainer.loadPersistentStores { (storeDescription, error) in
+        persistenceContainer.loadPersistentStores { (_, error) in
             if let error = error as NSError? {
-                // В реальном приложении здесь должна быть более сложная обработка ошибок
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }

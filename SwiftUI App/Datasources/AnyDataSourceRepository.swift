@@ -5,14 +5,6 @@
 //  Created by Artem Khachatryan on 8/3/25.
 //
 
-
-//
-//  AnyDataSourceRepository.swift
-//  SwiftUI App
-//
-//  Created by Artem Khachatryan on 8/3/25.
-//
-
 import Foundation
 
 /// A type-erased wrapper over any `DataSourceRepository`.

@@ -27,8 +27,12 @@ extension CarModel: ManagedObject {
 
     /// Maps the CarModel managed object to a domain `Car` model.
     func toModel() -> Car {
+        guard let id = self.id else {
+            fatalError("Managed CarModel missing non-optional id")
+        }
+        
         return Car(
-           id: self.id ?? UUID(),
+           id: id,
            imageName: self.imageName ?? "",
            title: self.title ?? "",
            price: self.price
