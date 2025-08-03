@@ -12,6 +12,8 @@ struct CarDetailsView: View {
     let car: Car
     // Variable for custom "Back" button
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var viewModel: CarsListViewModel
+
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -64,7 +66,9 @@ struct CarDetailsView: View {
             
             HStack {
                 AnimatedPrimaryButton(text: "Book a Visit", isPrimary: false)
-                AnimatedPrimaryButton(text: "Buy Now", isPrimary: true)
+                AnimatedPrimaryButton(text: "Buy Now", isPrimary: true) {
+                    viewModel.makeOrder(for: car)
+                }
             }.padding(.horizontal)
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -83,12 +87,5 @@ struct CarDetailsView: View {
                 }
             }
         }
-    }
-}
-
-
-#Preview {
-    NavigationStack {
-        CarDetailsView(car: .init(id: "0", imageName: ImageAsset.mercedes.rawValue, title: "Mercedes-Benz 2021 Grand Coupe", price: 54891))
     }
 }

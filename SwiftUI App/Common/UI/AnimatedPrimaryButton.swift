@@ -9,14 +9,24 @@ import SwiftUI
 struct AnimatedPrimaryButton: View {
     let text: String
     let isPrimary: Bool
+    private var onTap: () -> Void
     @State private var moveOut = false
     @State private var moveIn = false
     @State private var isAnimating = false
-
+    
+    init(text: String, isPrimary: Bool, onTap: @escaping () -> Void = {}) {
+        self.text = text
+        self.isPrimary = isPrimary
+        self.onTap = onTap
+    }
+    
     var body: some View {
         Button(
             action: {
             guard !isAnimating else { return }
+            // Main button action
+            onTap()
+            // Animation
             isAnimating = true
             moveIn = false
             withAnimation(.easeInOut(duration: 0.3)) {
