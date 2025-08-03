@@ -32,8 +32,3 @@ struct TabViewScreen: View {
     }
 }
 
-
-#Preview {
-    let carsListViewModel = CarsListViewModel(carService: MockCarService())
-    TabViewScreen(carsListViewModel: carsListViewModel)
-}

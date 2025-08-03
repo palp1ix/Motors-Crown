@@ -52,9 +52,3 @@ struct PriceRangeSelector: View {
 
 
 
-
-
-#Preview {
-    CarFilter()
-        .environmentObject(CarsListViewModel(carService: MockCarService()))
-}
