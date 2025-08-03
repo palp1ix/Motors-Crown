@@ -17,16 +17,18 @@ struct OrderList: View {
     var body: some View {
         ZStack {
             Theme.background.ignoresSafeArea()
-            VStack(alignment: .leading) {
-                Text("Your Orders: \(viewModel.orderCount)").font(CFont.bold(24))
-                ForEach(viewModel.orderedCars) { car in
-                    ExtendedCarCard(car: car)
-                }
-            }.padding(.horizontal)
-                .onAppear {
-                    viewModel
-                        .fetchOrders()
-                }
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Your Orders: \(viewModel.orderCount)").font(CFont.bold(24))
+                    ForEach(viewModel.orderedCars) { car in
+                        ExtendedCarCard(car: car)
+                    }
+                }.padding(.horizontal)
+            }
+            .onAppear {
+                viewModel
+                    .fetchOrders()
+            }
         }
     }
 }
