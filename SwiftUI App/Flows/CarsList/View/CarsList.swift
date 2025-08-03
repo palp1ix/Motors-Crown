@@ -51,7 +51,3 @@ struct CarsList: View {
         .environmentObject(viewModel) 
     }
 }
-
-#Preview {
-    CarsList(viewModel: CarsListViewModel(carService: MockCarService()))
-}
