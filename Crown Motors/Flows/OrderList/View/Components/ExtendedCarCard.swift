@@ -32,12 +32,12 @@ struct ExtendedCarCard: View {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(car.title)
                             .lineLimit(2)
-                            .font(CFont.bold(24))
+                            .font(CFont.bold(20))
                             .foregroundColor(Theme.primaryAccent)
 
                         HStack {
                             Text(car.price, format: .currency(code: "USD").rounded())
-                                    .font(CFont.bold(22))
+                                    .font(CFont.bold(18))
                                     .foregroundColor(Theme.primaryText)
                             Spacer()
                         }

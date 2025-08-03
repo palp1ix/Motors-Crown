@@ -41,6 +41,7 @@ struct CarsList: View {
                     .padding(.horizontal, 10)
                     .navigationDestination(for: Car.self, destination: { info in
                         CarDetailsView(car: info)
+                            .toolbar(.hidden, for: .tabBar)
                     })
                 }
                 .scrollClipDisabled(false)
@@ -50,4 +51,12 @@ struct CarsList: View {
         .preferredColorScheme(.light)
         .environmentObject(viewModel) 
     }
+}
+
+#Preview {
+    let datasource = MockDataSource()
+    let carService = MockCarService()
+    let viewModel = CarsListViewModel(carService: carService, datasource: AnyDataSourceRepository(datasource))
+    
+    CarsList(viewModel: viewModel)
 }
