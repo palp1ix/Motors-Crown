@@ -17,10 +17,10 @@ struct OrderList: View {
     var body: some View {
         ZStack {
             Theme.background.ignoresSafeArea()
-            VStack {
+            VStack(alignment: .leading) {
                 Text("Your Orders: \(viewModel.orderCount)").font(CFont.bold(24))
-                List(viewModel.orderedCars) { car in
-                    CarCard(car: car)
+                ForEach(viewModel.orderedCars) { car in
+                    ExtendedCarCard(car: car)
                 }
             }.padding(.horizontal)
                 .onAppear {
@@ -29,4 +29,13 @@ struct OrderList: View {
                 }
         }
     }
+}
+
+#Preview {
+    let datasource = MockDataSource()
+    return OrderList(
+        viewModel: OrderListViewModel(
+            datasource: AnyDataSourceRepository(datasource)
+        )
+    )
 }
