@@ -4,10 +4,23 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SwiftUI App.xcscheme_^#shared#^_</key>
+		<key>Crown Motors.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C0145DDD2E3FB8980066DDDD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C08E86D32E33842000765A5C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

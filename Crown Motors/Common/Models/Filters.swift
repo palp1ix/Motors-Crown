@@ -25,6 +25,6 @@ class Filters: ObservableObject {
         self.minPrice = minPrice
         self.maxPrice = maxPrice
         self.promptText = promptText
-        self.selectedCompanies = []
+        self.selectedCompanies = selectedCompanies
     }
 }
