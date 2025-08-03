@@ -10,11 +10,19 @@ import CoreData
 
 @main
 struct SwiftUI_AppApp: App {
-    let persistenceContainer = NSPersistentContainer(name: "CrownMotors")
+    let persistenceContainer: NSPersistentContainer
     let datasource:  CoreDataSource<CarModel>
     let carService: CarService
     
     init() {
+        persistenceContainer = NSPersistentContainer(name: "CrownMotors")
+        persistenceContainer.loadPersistentStores { (storeDescription, error) in
+            if let error = error as NSError? {
+                // В реальном приложении здесь должна быть более сложная обработка ошибок
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+        
         self.carService = MockCarService()
         self.datasource = CoreDataSource(context: persistenceContainer.viewContext)
     }
@@ -28,7 +36,10 @@ struct SwiftUI_AppApp: App {
                     // It needed to avoid generic view model type (Type Erasure)
                     // And `tight coupling` effect
                     datasource: AnyDataSourceRepository(datasource)
-                )
+                ),
+                orderListViewModel: OrderListViewModel(
+                    datasource: AnyDataSourceRepository(datasource)
+                    )
             )
         }
     }
