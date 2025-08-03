@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct SwiftUI_AppApp: App {
+    let carsListViewModel = CarsListViewModel(carService: MockCarService())
+    
     var body: some Scene {
         WindowGroup {
-            CarsList(viewModel: CarsListViewModel(carService: MockCarService()))
+            TabViewScreen(carsListViewModel: carsListViewModel)
         }
     }
 }

@@ -89,6 +89,6 @@ struct CarDetailsView: View {
 
 #Preview {
     NavigationStack {
-        CarDetailsView(car: .init(id: "0", imageName: ImageAsset.mercedes.rawValue, title: "Mercedes-Benz 2021 Grand Coupe", price: 54891))
+        CarDetailsView(car: .init(id: UUID(), imageName: ImageAsset.mercedes.rawValue, title: "Mercedes-Benz 2021 Grand Coupe", price: 54891))
     }
 }
