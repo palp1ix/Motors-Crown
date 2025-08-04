@@ -14,6 +14,8 @@ struct CrownMotorsApp: App {
     let datasource:  CoreDataSource<CarModel>
     let carService: CarService
     
+    
+    // MARK: - Initialization
     init() {
         persistenceContainer = NSPersistentContainer(name: "CrownMotors")
         persistenceContainer.loadPersistentStores { (_, error) in
@@ -25,7 +27,7 @@ struct CrownMotorsApp: App {
         self.carService = MockCarService()
         self.datasource = CoreDataSource(context: persistenceContainer.viewContext)
     }
-    
+
     var body: some Scene {
         WindowGroup {
             TabViewScreen(
