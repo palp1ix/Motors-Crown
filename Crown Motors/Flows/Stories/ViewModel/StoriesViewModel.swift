@@ -17,6 +17,7 @@ class StoriesViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     private var itemCancellables = Set<AnyCancellable>()
+    private var timeObserver: Any?
 
     // MARK: - Initialization
     
@@ -26,6 +27,12 @@ class StoriesViewModel: ObservableObject {
         
         setupStateSubscribers()
         loadStory()
+    }
+    
+    deinit {
+        if let observer = timeObserver {
+            player.removeTimeObserver(observer)
+        }
     }
     
     // MARK: - Public Control Methods
@@ -38,6 +45,7 @@ class StoriesViewModel: ObservableObject {
         } else {
             if currentGroupIndex < storyGroups.count - 1 {
                 currentGroupIndex += 1
+                currentStoryIndex = 0 // Reset to the first story of the next group
             } else {
                 print("All stories finished.")
                 player.pause()
@@ -51,6 +59,8 @@ class StoriesViewModel: ObservableObject {
         } else {
             if currentGroupIndex > 0 {
                 currentGroupIndex -= 1
+                // Reset to the last story of the previous group
+                currentStoryIndex = storyGroups[currentGroupIndex].stories.count - 1
             } else {
                 print("Already at the very first story.")
             }
@@ -123,7 +133,7 @@ class StoriesViewModel: ObservableObject {
             }
             .store(in: &cancellables)
             
-        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.1, preferredTimescale: 600), queue: .main) { [weak self] time in
+        timeObserver = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.1, preferredTimescale: 600), queue: .main) { [weak self] time in
             guard let self = self, let duration = self.player.currentItem?.duration else { return }
             
             let totalSeconds = CMTimeGetSeconds(duration)
