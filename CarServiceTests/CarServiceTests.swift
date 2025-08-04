@@ -26,7 +26,7 @@ final class CarServiceTests: XCTestCase {
     
     func testFetchCars_WithEmptyPromptAndDefaultPriceRange_ReturnsAllCars() {
         // Given
-        let filters = createFilters() // Используем хелпер для чистоты
+        let filters = createFilters()
         
         // When
         let result = mockCarService.fetchCars(filters: filters)
@@ -253,8 +253,6 @@ final class CarServiceTests: XCTestCase {
 // MARK: - Test Helpers
 
 extension CarServiceTests {
-    
-    // ИСПРАВЛЕНО: Порядок аргументов в вызове инициализатора
     func createFilters(prompt: String = "", min: Double = 0.0, max: Double = 200000.0) -> Filters {
         return Filters(selectedCompanies: [], minPrice: min, maxPrice: max, promptText: prompt)
     }
