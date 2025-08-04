@@ -39,5 +39,10 @@ struct CustomVideoPlayer: UIViewRepresentable {
         init(_ parent: CustomVideoPlayer) {
             self.parent = parent
         }
+        
+        deinit {
+            playerLayer?.removeFromSuperlayer()
+            playerLayer = nil
+        }
     }
 }
