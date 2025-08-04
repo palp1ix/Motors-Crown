@@ -32,6 +32,10 @@ struct CarsList: View {
                         maxWidth: .infinity,
                         alignment: .leading
                     )
+
+                    // Stories section with authors (car dealears and company)
+                    StoriesScrollPreview(authors: viewModel.storyAuthors)
+                        .padding(.top, 5)
                     
                     LazyVGrid(columns: columns, spacing: 5) {
                         ForEach(viewModel.cars) { car in
@@ -56,7 +60,7 @@ struct CarsList: View {
 #Preview {
     let datasource = MockDataSource()
     let carService = MockCarService()
-    let viewModel = CarsListViewModel(carService: carService, datasource: AnyDataSourceRepository(datasource))
+    let viewModel = CarsListViewModel(carService: carService, storiesService: MockStoriesService(), datasource: AnyDataSourceRepository(datasource))
     
     CarsList(viewModel: viewModel)
 }
