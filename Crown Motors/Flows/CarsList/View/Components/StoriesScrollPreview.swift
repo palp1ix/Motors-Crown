@@ -7,14 +7,18 @@
 import SwiftUI
 
 struct StoriesScrollPreview: View {
-    let authors: [StoryAuthor]
+    let storyGroups: [StoryGroup]
+    let onStorySelected: (StoryGroup) -> Void
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
                 Color.clear
                     .frame(width: 5, height: 0) // Spacer to align the first author in the center
-                ForEach(authors) { author in
+                ForEach(storyGroups) { storyGroup in
+                    // Author of our story
+                    let author = storyGroup.author
+                    
                     VStack(alignment: .center) {
                         Image(author.imageName)
                             .resizable()
@@ -28,6 +32,9 @@ struct StoriesScrollPreview: View {
                             .padding(.bottom, 5)
                         
                         Text(author.name).font(CFont.bold(14))
+                    }
+                    .onTapGesture {
+                        onStorySelected(storyGroup)
                     }
                     .padding(5)
                 }

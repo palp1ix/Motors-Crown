@@ -112,23 +112,17 @@ class StoriesViewModel: ObservableObject {
     }
     
     private func setupStateSubscribers() {
+        // This publisher now triggers ONLY when a unique combination
+        // of group and story index appears.
         $currentGroupIndex
-            .removeDuplicates()
-            .sink { [weak self] _ in
-                // When group changes, reset story index and load.
-                if self?.currentStoryIndex != 0 {
-                    self?.currentStoryIndex = 0
-                } else {
-                    // If the index is already 0, the $currentStoryIndex subscriber won't fire,
-                    // so we need to trigger the load manually.
-                    self?.loadStory()
-                }
+            .combineLatest($currentStoryIndex)
+            .removeDuplicates { prev, current in
+                // Only fire if both group and story index are the same as before.
+                return prev.0 == current.0 && prev.1 == current.1
             }
-            .store(in: &cancellables)
-            
-        $currentStoryIndex
-            .removeDuplicates()
-            .sink { [weak self] _ in
+            .sink { [weak self] (groupIndex, storyIndex) in
+                // Now we have a single, reliable trigger to load the story.
+                print("Loading story for group \(groupIndex), story \(storyIndex)")
                 self?.loadStory()
             }
             .store(in: &cancellables)
@@ -139,11 +133,14 @@ class StoriesViewModel: ObservableObject {
             let totalSeconds = CMTimeGetSeconds(duration)
             if totalSeconds.isFinite && totalSeconds > 0 {
                 let currentSeconds = CMTimeGetSeconds(time)
-                self.progress = currentSeconds / totalSeconds
+                
+                // Clamp the value to the 0...1 range before assigning it.
+                self.progress = min(1.0, max(0.0, currentSeconds / totalSeconds))
             }
         }
     }
     
+    // This method sets up subscribers for the AVPlayerItem.
     private func setupItemSubscribers(for item: AVPlayerItem) {
         // Subscriber for when the item finishes playing.
         NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime, object: item)
