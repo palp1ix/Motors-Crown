@@ -10,6 +10,7 @@ enum ImageAsset: String {
     case mercedes, bmw, audi, porshe, tesla, lexus
     case speedometr, speed, odometr
     case cardealer1, cardealer2, cardealer3
+    case car, shopping_bag
 }
 
 enum CompanyLogos: String, CaseIterable, Identifiable {

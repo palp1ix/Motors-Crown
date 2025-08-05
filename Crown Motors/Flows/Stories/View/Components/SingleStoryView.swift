@@ -12,7 +12,6 @@ struct SingleStoryView: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 ProgressViewStrips(viewModel: viewModel)
-                    .padding(.top, 8)
                 
                 AuthorInfoView(author: currentGroup.author)
                     .padding(.horizontal)

@@ -10,7 +10,7 @@ import Combine
 
 class CarsListViewModel: ObservableObject {
     @Published var cars: [Car] = []
-    @Published var storyAuthors: [StoryAuthor] = []
+    @Published var storyGroups: [StoryGroup] = []
     @Published var filters: Filters = Filters()
     
     private let carService: CarService
@@ -31,15 +31,15 @@ class CarsListViewModel: ObservableObject {
             .store(in: &cancellables)
         
         filterCars(filters: filters)
-        fetchStoryAuthors()
+        fetchStoryGroups()
     }
 
     func filterCars(filters: Filters) {
         self.cars = carService.fetchCars(filters: filters)
     }
     
-    func fetchStoryAuthors() {
-        self.storyAuthors = storiesService.fetchStoryAuthors()
+    func fetchStoryGroups() {
+        self.storyGroups = storiesService.fetchStoryGroups()
     }
     
     func makeOrder(for car: Car) {

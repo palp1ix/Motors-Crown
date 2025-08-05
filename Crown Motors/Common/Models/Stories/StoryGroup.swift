@@ -9,8 +9,12 @@
 import Foundation
 
 // Group of stories by a specific author
-struct StoryGroup: Identifiable {
+struct StoryGroup: Identifiable, Equatable {
     let id = UUID()
     let author: StoryAuthor
     let stories: [Story]
+    
+    static func == (group1: StoryGroup, group2: StoryGroup) -> Bool {
+        return group1.id == group2.id
+    }
 }
