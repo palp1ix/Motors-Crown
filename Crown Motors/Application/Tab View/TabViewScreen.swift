@@ -24,15 +24,13 @@ struct TabViewScreen: View {
             TabView(selection: $selection) {
                 CarsList(viewModel: carsListViewModel)
                     .tabItem {
-                        Image(uiImage: UIImage(named: "car")!)
-                              //?.tabImageItem(isSelected: selection == 0, size: CGSize(width: 35, height: 35)) ?? UIImage())
+                        Image(uiImage: UIImage(named: "car")?.tabImageItem(isSelected: selection == 0, size: CGSize(width: 35, height: 35)) ?? UIImage())
                     }
                     .tag(0)
                 
                 OrderList(viewModel: orderListViewModel)
                      .tabItem {
-                         Image(uiImage: UIImage(named: "shopping_bag")!)
-                               //?.tabImageItem(isSelected: selection == 1) ?? UIImage())
+                         Image(uiImage: UIImage(named: "shopping_bag")?.tabImageItem(isSelected: selection == 1) ?? UIImage())
                      }
                      .tag(1)
             }
