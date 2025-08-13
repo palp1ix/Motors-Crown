@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct TabViewScreen: View {
     @State var selection: Int = 0
@@ -42,5 +43,31 @@ struct TabViewScreen: View {
                 .ignoresSafeArea()
         }
     }
+    
 }
 
+fileprivate extension UIImage {
+    func tabImageItem(isSelected: Bool, size: CGSize = CGSize(width: 25, height: 25)) -> UIImage {
+        
+        return UIGraphicsImageRenderer(size: size).image { context in
+            let rect = CGRect(origin: .zero, size: size)
+            let clipPath = UIBezierPath(ovalIn: rect)
+            clipPath.addClip()
+            self.draw(in: rect)
+        }
+        .withRenderingMode(.alwaysTemplate)
+    }
+}
+
+#Preview {
+    TabViewScreen(
+        carsListViewModel: CarsListViewModel(
+            carService: MockCarService(),
+            storiesService: MockStoriesService(),
+            datasource: AnyDataSourceRepository(MockDataSource())
+        ),
+        orderListViewModel: OrderListViewModel(
+            datasource: AnyDataSourceRepository(MockDataSource())
+        )
+    )
+}
