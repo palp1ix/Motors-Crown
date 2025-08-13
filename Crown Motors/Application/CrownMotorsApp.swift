@@ -13,6 +13,7 @@ struct CrownMotorsApp: App {
     let persistenceContainer: NSPersistentContainer
     let datasource:  CoreDataSource<CarModel>
     let carService: CarService
+    let storiesService: StoriesService
     
     
     // MARK: - Initialization
@@ -25,6 +26,7 @@ struct CrownMotorsApp: App {
         }
         
         self.carService = MockCarService()
+        self.storiesService = MockStoriesService()
         self.datasource = CoreDataSource(context: persistenceContainer.viewContext)
     }
 
@@ -33,6 +35,7 @@ struct CrownMotorsApp: App {
             TabViewScreen(
                 carsListViewModel: CarsListViewModel(
                     carService: carService,
+                    storiesService: storiesService,
                     // AnyDataSourceRepository it's wrapping for all repositories
                     // It needed to avoid generic view model type (Type Erasure)
                     // And `tight coupling` effect

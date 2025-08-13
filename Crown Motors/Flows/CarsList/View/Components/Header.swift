@@ -57,11 +57,6 @@ struct Header: View {
             .clipShape(RoundedRectangle(cornerRadius: 15))
         }
         .padding(.trailing, 20)
-        Text("Motors & Crown — это не просто автомобили, это выбор тех, кто ценит престиж, мощь и безупречный стиль. Мы отбираем лучшие экземпляры люксовых марок, чтобы каждая покупка становилась заявлением. Без компромиссов. Только вершина.")
-            .font(CFont.bold(15))
-            .italic()
-            .foregroundStyle(Theme.secondaryText)
-            .padding()
     }
 }
 
