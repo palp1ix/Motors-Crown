@@ -10,24 +10,16 @@ import CoreData
 
 @main
 struct CrownMotorsApp: App {
-    let persistenceContainer: NSPersistentContainer
-    let datasource:  CoreDataSource<CarModel>
+    let datasource:  MockDataSource
     let carService: CarService
     let storiesService: StoriesService
     
     
     // MARK: - Initialization
     init() {
-        persistenceContainer = NSPersistentContainer(name: "CrownMotors")
-        persistenceContainer.loadPersistentStores { (_, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        }
-        
         self.carService = MockCarService()
         self.storiesService = MockStoriesService()
-        self.datasource = CoreDataSource(context: persistenceContainer.viewContext)
+        self.datasource = MockDataSource()
     }
 
     var body: some Scene {
