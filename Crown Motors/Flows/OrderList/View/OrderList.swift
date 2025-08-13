@@ -18,20 +18,27 @@ struct OrderList: View {
         ZStack {
             Theme.background.ignoresSafeArea()
             ScrollView {
-                VStack(alignment: .leading) {
-                    Text("Your Orders: \(viewModel.orderCount)").font(CFont.bold(24))
-                    ForEach(viewModel.orderedCars) { car in
-                        ExtendedCarCard(car: car)
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("Your Orders: \(viewModel.orderCount)")
+                        .font(CFont.bold(24))
+                        .padding(.leading, 4)
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 18) {
+                        ForEach(viewModel.orderedCars) { car in
+                            ExtendedCarCard(car: car)
+                        }
                     }
-                }.padding(.horizontal)
+                }
+                .padding([.horizontal, .top])
             }
             .onAppear {
                 viewModel
                     .fetchOrders()
             }
+            
         }
     }
 }
+
 
 #Preview {
     let datasource = MockDataSource()
@@ -41,3 +48,4 @@ struct OrderList: View {
         )
     )
 }
+

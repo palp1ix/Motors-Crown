@@ -1,10 +1,3 @@
-//
-//  PriceParam.swift
-//  SwiftUI App
-//
-//  Created by Artem Khachatryan on 7/27/25.
-//
-
 import SwiftUI
 
 struct PriceParam: View {
@@ -17,8 +10,10 @@ struct PriceParam: View {
                 .font(CFont.regular(16))
                 .foregroundStyle(Theme.secondaryText)
             
-            // Используем отформатированную строку
+            // Use formatted price
             Text(value, format: .currency(code: "USD"))
+                .lineLimit(1)
+                .truncationMode(.tail)
                 .font(CFont.bold(30))
                 .foregroundColor(Theme.primaryText)
         }

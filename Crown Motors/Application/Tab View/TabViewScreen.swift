@@ -12,23 +12,35 @@ struct TabViewScreen: View {
     var carsListViewModel: CarsListViewModel
     var orderListViewModel: OrderListViewModel
     
+    init(carsListViewModel: CarsListViewModel, orderListViewModel: OrderListViewModel) {
+        self.carsListViewModel = carsListViewModel
+        self.orderListViewModel = orderListViewModel
+        FancyNotificationCenter.shared.create(notification: .info(title: "Welcome to Crown Motors!", body: "Explore our wide range of cars and manage your orders easily. Enjoy your experience! 🚗💨"))
+    }
+
     var body: some View {
-        TabView(selection: $selection) {
-            CarsList(viewModel: carsListViewModel)
-                .tabItem {
-                    Image(systemName: "car")
-                    Text("Cars")
-                }
-                .tag(0)
+        ZStack {
+            TabView(selection: $selection) {
+                CarsList(viewModel: carsListViewModel)
+                    .tabItem {
+                        Image(uiImage: UIImage(named: "car")!)
+                              //?.tabImageItem(isSelected: selection == 0, size: CGSize(width: 35, height: 35)) ?? UIImage())
+                    }
+                    .tag(0)
+                
+                OrderList(viewModel: orderListViewModel)
+                     .tabItem {
+                         Image(uiImage: UIImage(named: "shopping_bag")!)
+                               //?.tabImageItem(isSelected: selection == 1) ?? UIImage())
+                     }
+                     .tag(1)
+            }
+            .tint(Theme.primaryAccent)
             
-            OrderList(viewModel: orderListViewModel)
-                 .tabItem {
-                     Image(systemName: "note.text")
-                     Text("Orders")
-                 }
-                 .tag(1)
+            FancyNotificationWrapper()
+                .allowsHitTesting(true)
+                .ignoresSafeArea()
         }
-        .tint(Theme.primaryAccent)
     }
 }
 

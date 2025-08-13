@@ -25,7 +25,6 @@ struct CarCard: View {
                     )
                     .padding(.top, 10)
                     .clipped()
-                
 
 
                 VStack(alignment: .leading) {
@@ -37,9 +36,11 @@ struct CarCard: View {
                     ExtraInfoLine()
 
                     HStack {
-                        Text(car.price, format: .currency(code: "USD").rounded())
+                        Text(car.price, format: .currency(code: "USD"))
                             .font(CFont.bold(16))
                             .foregroundColor(Theme.primaryText)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
                         Spacer()
                         AnimatedArrowButton()
                     }

@@ -10,8 +10,6 @@ import SwiftUI
 struct CarDetailsView: View {
     // Information about car
     let car: Car
-    // Variable for custom "Back" button
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var viewModel: CarsListViewModel
 
     
@@ -72,20 +70,5 @@ struct CarDetailsView: View {
             }.padding(.horizontal)
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button(action: {
-                    dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                        .foregroundStyle(Theme.primaryAccent)
-                        .padding(12)
-                        .background(Theme.surface)
-                        .clipShape(Circle())
-                        .padding(.bottom, 10)
-                }
-            }
-        }
     }
 }
