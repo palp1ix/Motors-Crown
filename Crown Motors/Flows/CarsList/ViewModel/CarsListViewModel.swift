@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class CarsListViewModel: ObservableObject {
     @Published var cars: [Car] = []
@@ -15,10 +16,10 @@ class CarsListViewModel: ObservableObject {
     
     private let carService: CarService
     private let storiesService: StoriesService
-    private let datasource: AnyDataSourceRepository<Car>
+    private let datasource: AnyDataSourceRepository<Order>
     private var cancellables = Set<AnyCancellable>()
 
-    init(carService: CarService, storiesService: StoriesService, datasource: AnyDataSourceRepository<Car>) {
+    init(carService: CarService, storiesService: StoriesService, datasource: AnyDataSourceRepository<Order>) {
         self.carService = carService
         self.datasource = datasource
         self.storiesService = storiesService
@@ -43,6 +44,7 @@ class CarsListViewModel: ObservableObject {
     }
     
     func makeOrder(for car: Car) {
-        datasource.create(car)
+        let order: Order = .init(id: UUID(), car: car, vinNumber: "WP1AB29P14L274895", color: Color.black, colorName: "Just Black", engineVolume: 4.4, currentStatus: .preparing, currentPosition: "Germany, Keiln St. Gegerodtsgasse 10", contactNumber: "+74 665 17 288")
+        datasource.create(order)
     }
 }

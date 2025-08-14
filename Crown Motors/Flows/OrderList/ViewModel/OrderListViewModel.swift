@@ -8,12 +8,12 @@ import Foundation
 import Combine
 
 class OrderListViewModel: ObservableObject {
-    @Published var orderedCars: [Car] = []
+    @Published var orderedCars: [Order] = []
     @Published var orderCount: Int = 0
     
-    var datasource: AnyDataSourceRepository<Car>
+    var datasource: AnyDataSourceRepository<Order>
     
-    init(datasource: AnyDataSourceRepository<Car>) {
+    init(datasource: AnyDataSourceRepository<Order>) {
         self.datasource = datasource
         
         fetchOrders()
