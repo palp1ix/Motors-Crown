@@ -16,7 +16,6 @@ struct TabViewScreen: View {
     init(carsListViewModel: CarsListViewModel, orderListViewModel: OrderListViewModel) {
         self.carsListViewModel = carsListViewModel
         self.orderListViewModel = orderListViewModel
-        FancyNotificationCenter.shared.create(notification: .info(title: "Welcome to Crown Motors!", body: "Explore our wide range of cars and manage your orders easily. Enjoy your experience! 🚗💨"))
     }
 
     var body: some View {
