@@ -65,6 +65,7 @@ struct CarDetailsView: View {
             HStack {
                 AnimatedPrimaryButton(text: "Book a Visit", isPrimary: false)
                 AnimatedPrimaryButton(text: "Buy Now", isPrimary: true) {
+                    FancyNotificationCenter.shared.create(notification: .success(title: "Successfully placed order!", body: "Your order is being processed. You will receive a confirmation email shortly."))
                     viewModel.makeOrder(for: car)
                 }
             }.padding(.horizontal)

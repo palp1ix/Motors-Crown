@@ -55,6 +55,7 @@ struct CarsList: View {
                     })
                 }
             }
+            // This is stories view
             .fullScreenCover(item: $selectedStoryGroup) { group in
                 // This closure is called when selectedStoryGroupID is NOT nil.
                 // It provides the non-optional ID.
