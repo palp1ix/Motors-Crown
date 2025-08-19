@@ -122,10 +122,10 @@ struct CarsMapView: UIViewRepresentable {
     // Generates a random list of car points within Minsk.
     static func generateCarPoints() -> [CarPoint] {
         var points: [CarPoint] = []
-        let numberOfCars = Int.random(in: 10...50)
+        let numberOfCars = Int.random(in: 10...20)
         
         // Minsk approximate bounding box
-        let minLat = 53.83, maxLat = 53.7
+        let minLat = 53.83, maxLat = 54.0
         let minLon = 27.4, maxLon = 27.7
         // Just mock data for showing current flowl;
         let oneMockCar = MockCarService().fetchCars(filters: Filters()).first!

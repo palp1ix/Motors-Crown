@@ -14,7 +14,6 @@ struct CrownMotorsApp: App {
     let carService: CarService
     let storiesService: StoriesService
     
-    
     // MARK: - Initialization
     init() {
         // Initialize map api
