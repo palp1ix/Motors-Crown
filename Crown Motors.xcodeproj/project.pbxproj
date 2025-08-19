@@ -38,6 +38,11 @@
 			path = CarServiceTests;
 			sourceTree = "<group>";
 		};
+		C0567DFC2E54AB2700B63CA3 /* screenshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = screenshots;
+			sourceTree = "<group>";
+		};
 		C08E86D62E33842000765A5C /* Crown Motors */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Crown Motors";
@@ -84,6 +89,7 @@
 		C08E86CB2E33842000765A5C = {
 			isa = PBXGroup;
 			children = (
+				C0567DFC2E54AB2700B63CA3 /* screenshots */,
 				C09772062E3F47B7003E8202 /* CarModel+CoreDataClass.swift */,
 				C09772072E3F47B7003E8202 /* CarModel+CoreDataProperties.swift */,
 				C08E86D62E33842000765A5C /* Crown Motors */,
@@ -142,6 +148,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				C0567DFC2E54AB2700B63CA3 /* screenshots */,
 				C08E86D62E33842000765A5C /* Crown Motors */,
 			);
 			name = "Crown Motors";
