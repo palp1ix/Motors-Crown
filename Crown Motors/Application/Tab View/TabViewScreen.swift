@@ -27,11 +27,18 @@ struct TabViewScreen: View {
                     }
                     .tag(0)
                 
+                CarsMap()
+                    .ignoresSafeArea()
+                    .tabItem {
+                        Image(uiImage: UIImage(named: "map")?.tabImageItem(isSelected: selection == 0) ?? UIImage())
+                    }
+                    .tag(1)
+                
                 OrderList(viewModel: orderListViewModel)
                      .tabItem {
                          Image(uiImage: UIImage(named: "shopping_bag")?.tabImageItem(isSelected: selection == 1) ?? UIImage())
                      }
-                     .tag(1)
+                     .tag(2)
             }
             .tint(Theme.primaryAccent)
             

@@ -16,6 +16,10 @@ class CoreDataSource<T: ManagedObject>: DataSourceRepository where T.Model: Stor
     
     init(context: NSManagedObjectContext) {
         self.context = context
+        
+        guard context.persistentStoreCoordinator != nil else {
+            fatalError("Context has no persistent store coordinator")
+        }
     }
     
     func create(_ model: Model) {
@@ -87,11 +91,14 @@ class CoreDataSource<T: ManagedObject>: DataSourceRepository where T.Model: Stor
     /// Rolls back the context in case of an error.
     private func saveContext() {
         guard context.hasChanges else { return }
-        do {
-            try context.save()
-        } catch {
-            print("Failed to save context: \(error)")
-            context.rollback()
+        
+        context.perform {
+            do {
+                try self.context.save()
+            } catch {
+                print("Failed to save context: \(error)")
+                self.context.rollback()
+            }
         }
     }
 }

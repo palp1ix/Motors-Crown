@@ -1,12 +1,12 @@
 //
-//  SwiftUI_AppApp.swift
-//  SwiftUI App
+//  CrownMotorsApp.swift
+//  Crown Motors App
 //
 //  Created by Artem Khachatryan on 7/25/25.
 //
 
 import SwiftUI
-import CoreData
+import YandexMapsMobile
 
 @main
 struct CrownMotorsApp: App {
@@ -14,9 +14,12 @@ struct CrownMotorsApp: App {
     let carService: CarService
     let storiesService: StoriesService
     
-    
     // MARK: - Initialization
     init() {
+        // Initialize map api
+        YMKMapKit.setApiKey("15db7f44-ddbf-4b83-b531-4aa5a379dbeb")
+        YMKMapKit.sharedInstance()
+        
         self.carService = MockCarService()
         self.storiesService = MockStoriesService()
         self.datasource = MockDataSource()
