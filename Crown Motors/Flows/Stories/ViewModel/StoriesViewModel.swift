@@ -98,13 +98,26 @@ class StoriesViewModel: ObservableObject {
         // 4. Proceed with loading the new item.
         let currentStoryContent = storyGroups[currentGroupIndex].stories[currentStoryIndex].content
         
-        guard let url = URL(string: currentStoryContent) else {
+        let url: URL?
+
+        // Check if it's local file
+        print("Check if it's local stories file")
+        if currentStoryContent.hasPrefix("http://") || currentStoryContent.hasPrefix("https://") {
+            // Remote video
+            url = URL(string: currentStoryContent)
+        } else {
+            // Local video from bundle
+            let fileName = currentStoryContent.replacingOccurrences(of: ".mp4", with: "")
+            url = Bundle.main.url(forResource: fileName, withExtension: "mp4")
+        }
+
+        guard let validURL = url else {
             print("Error: Invalid URL for story content: \(currentStoryContent)")
             self.isLoading = false
             return
         }
-        
-        let playerItem = AVPlayerItem(url: url)
+
+        let playerItem = AVPlayerItem(url: validURL)
         setupItemSubscribers(for: playerItem)
         
         player.replaceCurrentItem(with: playerItem)

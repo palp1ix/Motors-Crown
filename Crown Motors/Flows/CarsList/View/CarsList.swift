@@ -47,9 +47,6 @@ struct CarsList: View {
                     }
                     .padding(.horizontal, 10)
                     .navigationDestination(for: Car.self, destination: { info in
-                        // FIXME: Delete test logic
-                        FancyNotificationCenter.shared.create(notification: .info(title: "\(info.title) selected", body: "You can now view details or make an order. Also you can swipe down to dismiss this view."))
-                        
                         return CarDetailsView(car: info)
                             .toolbar(.hidden, for: .tabBar)
                     })
