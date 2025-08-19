@@ -1,6 +1,0 @@
-framework module Pods_Crown_Motors {
-  umbrella header "Pods-Crown Motors-umbrella.h"
-
-  export *
-  module * { export * }
-}
