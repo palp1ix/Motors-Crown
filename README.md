@@ -62,4 +62,4 @@ Imagine a car catalog app that’s both intuitive **and** delightful:
 
 1. Clone the repository:  
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/palp1ix/Motors-Crown.git
