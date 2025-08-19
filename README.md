@@ -41,7 +41,7 @@ Imagine a car catalog app that’s both intuitive **and** delightful:
 
 ## 🎨 App Screenshots & Walkthrough
 
-| **🔔 Custom Notification Banner** |
+| **🔔 Custom Notification Banner** | |
 |:----------------------------------------:|:----------------------------------------:|
 | ![Notification Banner 1](screenshots/notification_banner1.png) | ![Notification Banner 2](screenshots/notification_banner2.png) |
 
